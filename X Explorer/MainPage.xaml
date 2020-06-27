@@ -52,8 +52,10 @@
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Width="90" HorizontalAlignment="Left"/>
                 <NavigationViewItem Content="Home"/>
-                <NavigationViewItem Content="Share"/>
+                <NavigationViewItem Content="Tools"/>
                 <NavigationViewItem Content="View"/>
+                <NavigationViewItem Content="Share"/>
+               
 
             </NavigationView.MenuItems>
             <Frame Name="Ribbon" Height="150" Navigated="Ribbon_Navigated" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}">
