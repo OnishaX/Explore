@@ -7,18 +7,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-     
+    
     >
     <Page.Resources>
         <ResourceDictionary>
             <AcrylicBrush x:Key="NavigationViewTopPaneBackground" BackgroundSource="Backdrop" FallbackColor="{ThemeResource SystemAltHighColor}" AlwaysUseFallback="True"/>
-            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".7"/>
+            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeHighColor}" TintOpacity=".8"/>
         </ResourceDictionary>
     </Page.Resources>
 
-
     <Grid x:Name="grid">
-        <Button x:Name="AppButton" VerticalAlignment="Top" Width="70" Height="70" CornerRadius="90" Canvas.ZIndex="10" Background="White" Margin="10" Style="{StaticResource ButtonRevealStyle}">
+        <Button x:Name="AppButton" VerticalAlignment="Top" Width="70" Height="70" CornerRadius="90" Canvas.ZIndex="10" Margin="10" Style="{StaticResource ButtonRevealStyle}">
+            <Button.Background>
+                <SolidColorBrush Color="{ThemeResource SystemColorWindowColor}"/>
+            </Button.Background>
+            <Button.Foreground>
+                <SolidColorBrush Color="{ThemeResource SystemColorControlAccentColor}"/>
+            </Button.Foreground>
             <Button.Shadow>
                 <ThemeShadow/>
             </Button.Shadow>
@@ -26,7 +31,7 @@
             <FontIcon Glyph="&#xE81E;"/>
 
         </Button>
-        <muxc:TabView x:Name="tabView" AddTabButtonClick="TabView_AddTabButtonClick" TabCloseRequested="TabView_TabCloseRequested" CanDragTabs="True" CloseButtonOverlayMode="OnPointerOver" Height="40" Background="{ThemeResource SystemControlAccentAcrylicWindowAccentMediumHighBrush}">
+        <muxc:TabView x:Name="tabView" AddTabButtonClick="TabView_AddTabButtonClick" TabCloseRequested="TabView_TabCloseRequested" CanDragTabs="True" CloseButtonOverlayMode="OnPointerOver" Height="40" Background="{ThemeResource SystemControlAccentAcrylicWindowAccentMediumHighBrush}" AllowDrop="True">
 
             <muxc:TabView.TabStripHeader>
                 <Grid x:Name="ShellTitlebarInset" Background="Transparent" Width="90"/>
@@ -35,7 +40,6 @@
             <muxc:TabView.TabStripFooter>
                 <Grid>
                     <Rectangle x:Name="CustomDragRegion" Margin="0,0,0,0" Fill="Transparent" HorizontalAlignment="Stretch"/>
-                    <SearchBox BorderBrush="{x:Null}" Margin="0,0,150,0" Width="200" Background="{x:Null}" HorizontalAlignment="Right" SearchHistoryEnabled="False"/>
                 </Grid>
 
 
@@ -51,8 +55,6 @@
                 <NavigationViewItem Content="Tools"/>
                 <NavigationViewItem Content="View"/>
                 <NavigationViewItem Content="Share"/>
-
-
             </NavigationView.MenuItems>
             <Frame Name="Ribbon" Height="150" Navigated="Ribbon_Navigated" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}">
                 <StackPanel Orientation="Horizontal">
@@ -124,9 +126,19 @@
                 </StackPanel>
             </Frame>
         </NavigationView>
-        <NavigationView Name="TabViewItemCollection" IsPaneToggleButtonVisible="False" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" HorizontalContentAlignment="Stretch" Margin="0,230,0,0" AllowDrop="True" PaneDisplayMode="Left">
+        <NavigationView Name="TabViewItemCollection" IsPaneToggleButtonVisible="False" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" HorizontalContentAlignment="Stretch" Margin="0,230,0,0" AllowDrop="True" PaneDisplayMode="Left" VerticalAlignment="Stretch">
+            <NavigationView.MenuItems>
+                <NavigationViewItemHeader Width="90" HorizontalAlignment="Left"/>
+                <NavigationViewItem Content="Quick Access" CanDrag="True" Icon="OutlineStar"/>
+                <NavigationViewItem Content="Desktop" CanDrag="True" Icon="OutlineStar"/>
+                <NavigationViewItem Content="Documents" CanDrag="True" Icon="OutlineStar"/>
+                <NavigationViewItem Content="Downloads" CanDrag="True" Icon="OutlineStar"/>
+                <NavigationViewItem Content="OneDrive" CanDrag="True" Icon="OutlineStar"/>
+               
+
+            </NavigationView.MenuItems>
             <Grid Height="35" VerticalAlignment="Top">
-                <TextBox Text="Path" TextWrapping="NoWrap" AllowDrop="True" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="35" Background="#66FFFFFF"/>
+                <TextBox Text="Path" TextWrapping="NoWrap" AllowDrop="True" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="35" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
                 <Button HorizontalAlignment="Right" Height="35" Width="35"/>
             </Grid>
         </NavigationView>

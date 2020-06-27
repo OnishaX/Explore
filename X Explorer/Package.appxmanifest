@@ -14,8 +14,8 @@
   <mp:PhoneIdentity PhoneProductId="e5ff7a9c-2300-473c-a98d-d6a71326976f" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>X Explorer</DisplayName>
-    <PublisherDisplayName>xanas</PublisherDisplayName>
+    <DisplayName>Explore</DisplayName>
+    <PublisherDisplayName>Onisha Juhl</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -37,7 +37,7 @@
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="X Explorer"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" ShortName="Explore"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
