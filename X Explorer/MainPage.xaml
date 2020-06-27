@@ -39,7 +39,8 @@
             <muxc:TabView.TabStripFooter>
                 <Grid>
                     <Rectangle x:Name="CustomDragRegion" Margin="0,0,0,0" Fill="Transparent" HorizontalAlignment="Stretch"/>
-                    <SearchBox BorderBrush="{x:Null}" Margin="0,0,150,0" Width="200" Background="{x:Null}" HorizontalAlignment="Right"/>
+                    <SearchBox BorderBrush="{x:Null}" Margin="0,0,150,0" Width="200" Background="{x:Null}" HorizontalAlignment="Right" SearchHistoryEnabled="False"/>
+                    <TextBlock Text="Development Branch"/>
                 </Grid>
 
 
@@ -55,7 +56,7 @@
                 <NavigationViewItem Content="Tools"/>
                 <NavigationViewItem Content="View"/>
                 <NavigationViewItem Content="Share"/>
-               
+                
 
             </NavigationView.MenuItems>
             <Frame Name="Ribbon" Height="150" Navigated="Ribbon_Navigated" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}">
