@@ -11,9 +11,8 @@
     >
     <Page.Resources>
         <ResourceDictionary>
-            <AcrylicBrush x:Key="NavigationViewTopPaneBackground"
-                  BackgroundSource="Backdrop" FallbackColor="{ThemeResource SystemAltHighColor}" AlwaysUseFallback="True"/>
-
+            <AcrylicBrush x:Key="NavigationViewTopPaneBackground" BackgroundSource="Backdrop" FallbackColor="{ThemeResource SystemAltHighColor}" AlwaysUseFallback="True"/>
+            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".7"/>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -27,10 +26,7 @@
             <FontIcon Glyph="&#xE81E;"/>
 
         </Button>
-        <muxc:TabView x:Name="tabView" AddTabButtonClick="TabView_AddTabButtonClick" TabCloseRequested="TabView_TabCloseRequested" CanDragTabs="True" CloseButtonOverlayMode="OnPointerOver" Height="40">
-            <muxc:TabView.Background>
-                <AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" FallbackColor="{ThemeResource SystemAccentColor}" BackgroundSource="HostBackdrop" TintOpacity="0.8"/>
-            </muxc:TabView.Background>
+        <muxc:TabView x:Name="tabView" AddTabButtonClick="TabView_AddTabButtonClick" TabCloseRequested="TabView_TabCloseRequested" CanDragTabs="True" CloseButtonOverlayMode="OnPointerOver" Height="40" Background="{ThemeResource SystemControlAccentAcrylicWindowAccentMediumHighBrush}">
 
             <muxc:TabView.TabStripHeader>
                 <Grid x:Name="ShellTitlebarInset" Background="Transparent" Width="90"/>
@@ -39,7 +35,7 @@
             <muxc:TabView.TabStripFooter>
                 <Grid>
                     <Rectangle x:Name="CustomDragRegion" Margin="0,0,0,0" Fill="Transparent" HorizontalAlignment="Stretch"/>
-                    <SearchBox BorderBrush="{x:Null}" Margin="0,0,150,0" Width="200" Background="{x:Null}" HorizontalAlignment="Right"/>
+                    <SearchBox BorderBrush="{x:Null}" Margin="0,0,150,0" Width="200" Background="{x:Null}" HorizontalAlignment="Right" SearchHistoryEnabled="False"/>
                 </Grid>
 
 
@@ -55,7 +51,7 @@
                 <NavigationViewItem Content="Tools"/>
                 <NavigationViewItem Content="View"/>
                 <NavigationViewItem Content="Share"/>
-               
+
 
             </NavigationView.MenuItems>
             <Frame Name="Ribbon" Height="150" Navigated="Ribbon_Navigated" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}">
@@ -129,7 +125,10 @@
             </Frame>
         </NavigationView>
         <NavigationView Name="TabViewItemCollection" IsPaneToggleButtonVisible="False" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" HorizontalContentAlignment="Stretch" Margin="0,230,0,0" AllowDrop="True" PaneDisplayMode="Left">
-
+            <Grid Height="35" VerticalAlignment="Top">
+                <TextBox Text="Path" TextWrapping="NoWrap" AllowDrop="True" VerticalContentAlignment="Center" VerticalAlignment="Top" Height="35" Background="#66FFFFFF"/>
+                <Button HorizontalAlignment="Right" Height="35" Width="35"/>
+            </Grid>
         </NavigationView>
     </Grid>
 </Page>
