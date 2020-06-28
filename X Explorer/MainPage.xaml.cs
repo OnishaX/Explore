@@ -5,6 +5,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using muxc = Microsoft.UI.Xaml.Controls;
+using System.Windows.Input;
+using Windows.Storage;
+using Microsoft.Toolkit.Uwp;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -30,10 +33,13 @@ namespace X_Explorer
 
             Window.Current.SetTitleBar(CustomDragRegion);
 
-
         }
 
-        private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Shadow.Receivers.Add(ShadowGrid);
+        }
+            private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             if (FlowDirection == FlowDirection.LeftToRight)
             {
@@ -69,6 +75,11 @@ namespace X_Explorer
         }
 
         private void Ribbon_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
