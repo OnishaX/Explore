@@ -35,10 +35,6 @@ namespace X_Explorer
 
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            Shadow.Receivers.Add(ShadowGrid);
-        }
             private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             if (FlowDirection == FlowDirection.LeftToRight)
@@ -80,6 +76,11 @@ namespace X_Explorer
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void AppButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

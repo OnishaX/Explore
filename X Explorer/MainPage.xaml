@@ -23,11 +23,34 @@
     </Page.Resources>
 
     <Grid x:Name="grid">
-        <Grid x:Name="ShadowGrid" CornerRadius="90" Shadow="{StaticResource Shadow}" Translation="0,0,100" Width="  70" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.ZIndex="100" Margin="10,10,0,0" Background="White">
-            <Button x:Name="AppButton" VerticalAlignment="Top" Width="70" Height="70" CornerRadius="90" Canvas.ZIndex="10" Style="{StaticResource ButtonRevealStyle}" Background="White">
-                <FontIcon Glyph="&#xE81E;"/>
-            </Button>
-        </Grid>
+        <DropDownButton x:Name="AppButton" VerticalAlignment="Top" Width="70" Height="70" CornerRadius="90" Canvas.ZIndex="10" Style="{StaticResource ButtonRevealStyle}" Background="White" Click="AppButton_Click" Margin="10,10,0,0">
+            <DropDownButton.Content>
+                <Image Source="/Assets/Square150x150Logo.scale-200.png" Width="42" Height="42"/>
+            </DropDownButton.Content>
+
+
+            <DropDownButton.Flyout>
+                
+                <MenuFlyout Placement="Bottom">
+                    <MenuFlyoutItem Text="Open new Explore window">
+                        <MenuFlyoutItem.Icon>
+                            <SymbolIcon Symbol="Add" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="Settings">
+                        <MenuFlyoutItem.Icon>
+                            <SymbolIcon Symbol="Setting"/>
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="About Explore">
+                        <MenuFlyoutItem.Icon>
+                            <SymbolIcon Symbol="Important" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+                </MenuFlyout>
+            </DropDownButton.Flyout>
+        </DropDownButton>
+            <Image Height="70" Width="70"/>
 
         <muxc:TabView x:Name="tabView" AddTabButtonClick="TabView_AddTabButtonClick" TabCloseRequested="TabView_TabCloseRequested" CanDragTabs="True" CloseButtonOverlayMode="OnPointerOver" Height="40" Background="{ThemeResource SystemControlAccentAcrylicWindowAccentMediumHighBrush}" AllowDrop="True">
             <muxc:TabView.TabStripHeader>
