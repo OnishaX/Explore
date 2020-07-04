@@ -8,6 +8,11 @@ using muxc = Microsoft.UI.Xaml.Controls;
 using System.Windows.Input;
 using Windows.Storage;
 using Microsoft.Toolkit.Uwp;
+using System.Numerics;
+using System.IO;
+using System.Collections.Generic;
+using System;
+using System.Linq;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -21,7 +26,8 @@ namespace X_Explorer
         public MainPage()
         {
             this.InitializeComponent();
-
+            string path = "C:";
+            
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             ApplicationViewTitleBar formattableTitleBar = ApplicationView.GetForCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
@@ -32,6 +38,13 @@ namespace X_Explorer
             formattableTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
             Window.Current.SetTitleBar(CustomDragRegion);
+            
+            Shadow.Receivers.Add(Ribbon);
+
+            Ribbon.Translation += new Vector3(0, 0, 32);
+
+
+            DirectoryContents.ItemsSource = new DirectoryInfo(path).GetFiles();
 
         }
 
@@ -70,19 +83,20 @@ namespace X_Explorer
             sender.TabItems.Remove(args.Tab);
         }
 
-        private void Ribbon_Navigated(object sender, NavigationEventArgs e)
-        {
 
-        }
+        private void Ribbon_Navigate(string navItemTag, Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo transitionInfo)
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+                {
+                // Get the page type before navigation so you can prevent duplicate
+                // entries in the backstack.
+                var preNavPageType = RibbonContent.CurrentSourcePageType;
 
-        }
-
-        private void AppButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-    }
+                // Only navigate if the selected page isn't currently loaded.
+                if (!(_page is null) && !Type.Equals(preNavPageType, _page))
+                {
+                    RibbonContent.Navigate(_page, null, transitionInfo);
+                }
+            }
+        
+}
 }

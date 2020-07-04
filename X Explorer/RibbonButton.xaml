@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="X_Explorer.RibbonButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:X_Explorer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="33.3333333333333"
+    d:DesignWidth="100">
+
+    <Grid>
+        <Button Height="33.3333333333333" HorizontalContentAlignment="Left" CornerRadius="2" Background="Transparent" Style="{StaticResource ButtonRevealStyle}" MinWidth="100">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <SymbolIcon Symbol="Emoji"/>
+                <TextBlock FontSize="14" Text="Text" Margin="5,0,0,0" Width="24.459" />
+            </StackPanel>
+
+        </Button>
+    </Grid>
+</UserControl>

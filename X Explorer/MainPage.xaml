@@ -16,7 +16,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <AcrylicBrush x:Key="NavigationViewTopPaneBackground" BackgroundSource="Backdrop" FallbackColor="{ThemeResource SystemAltHighColor}" AlwaysUseFallback="True"/>
-            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeHighColor}" TintOpacity=".8"/>
+            <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeHighColor}" FallbackColor="{ThemeResource SystemChromeLowColor}" TintOpacity=".8"/>
             <ThemeShadow x:Name="Shadow"/>
         </ResourceDictionary>
 
@@ -65,90 +65,50 @@
 
             </muxc:TabView.TabStripFooter>
         </muxc:TabView>
-        <controls:DropShadowPanel BlurRadius="5.0" ShadowOpacity="1" OffsetX="0" OffsetY="5.0" Color="#DDDDDD" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=page, Mode=OneWay}" Margin="0,40,0,0" Canvas.ZIndex="1">
-            <NavigationView x:Name="NavigationViewTopPaneBackground" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False" IsSettingsVisible="False" OverflowLabelMode="MoreLabel" VerticalAlignment="Top" IsPaneOpen="False" Width="{Binding ActualWidth, ElementName=page, Mode=OneWay}">
+            <NavigationView x:Name="Ribbon" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False" IsSettingsVisible="False" OverflowLabelMode="MoreLabel" VerticalAlignment="Top" IsPaneOpen="False" HorizontalAlignment="Stretch" Margin="0,40,0,0">
+            <NavigationView.Shadow>
+                <ThemeShadow/>
+            </NavigationView.Shadow>
 
-                <NavigationView.MenuItems>
+            <NavigationView.MenuItems>
                     <NavigationViewItemHeader Width="90" HorizontalAlignment="Left"/>
-                    <NavigationViewItem Content="Home"/>
+                <NavigationViewItem Content="Home" Tag="home"/>
                     <NavigationViewItem Content="Tools"/>
                     <NavigationViewItem Content="View"/>
                     <NavigationViewItem Content="Share"/>
                 </NavigationView.MenuItems>
-                <Frame Name="Ribbon" Height="150" Navigated="Ribbon_Navigated" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <Button Width="60" Height="100" HorizontalContentAlignment="Center" CornerRadius="1.5,1.5,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}">
-                                <StackPanel Orientation="Vertical">
-                                    <SymbolIcon Symbol="Copy" />
-                                    <TextBlock FontSize="14" Margin="0,5,0,30" Text="Copy" />
-                                </StackPanel>
+                <Frame Name="RibbonContent" Height="150" Navigated="Ribbon_Navigated" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}" IsDoubleTapEnabled="False" IsHoldingEnabled="False">
+                <StackPanel Orientation="Horizontal">
+                    <local:RibbonLargeButton/>
+                    <local:RibbonLargeButtonSplitDrop/>
 
-                            </Button>
-
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <Button Width="60" Height="70" HorizontalContentAlignment="Center" CornerRadius="1.5,1.5,0,0" Background="Transparent" Style="{StaticResource ButtonRevealStyle}">
-                                <StackPanel Orientation="Vertical">
-                                    <SymbolIcon Symbol="Paste" />
-                                    <TextBlock FontSize="14" Margin="0,5,0,0" Text="Paste" />
-                                </StackPanel>
-
-                            </Button>
-                            <DropDownButton Width="60" Height="30" HorizontalContentAlignment="Center" CornerRadius="0,0,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}">
-                                <DropDownButton.Content>
-                                    <FontIcon FontSize="10" FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE70D;" />
-                                </DropDownButton.Content>
-
-
-                                <DropDownButton.Flyout>
-                                    <MenuFlyout Placement="Bottom">
-                                        <MenuFlyoutItem Text="Paste Text Only">
-                                            <MenuFlyoutItem.Icon>
-                                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE725;" />
-                                            </MenuFlyoutItem.Icon>
-                                        </MenuFlyoutItem>
-                                        <MenuFlyoutItem Text="Reply">
-                                            <MenuFlyoutItem.Icon>
-                                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8CA;" />
-                                            </MenuFlyoutItem.Icon>
-                                        </MenuFlyoutItem>
-                                        <MenuFlyoutItem Text="Reply All">
-                                            <MenuFlyoutItem.Icon>
-                                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8C2;" />
-                                            </MenuFlyoutItem.Icon>
-                                        </MenuFlyoutItem>
-                                    </MenuFlyout>
-                                </DropDownButton.Flyout>
-                            </DropDownButton>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <Button HorizontalContentAlignment="Left" CornerRadius="1.5,1.5,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}">
-                                <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="Cut" />
-                                    <TextBlock FontSize="14" Text="Cut" Margin="5,0,0,0" />
-                                </StackPanel>
-                            </Button>
-                            <Button HorizontalContentAlignment="Left" CornerRadius="1.5,1.5,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}">
-                                <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="Copy" />
-                                    <TextBlock FontSize="14" Text="Copy Path" Margin="5,0,0,0" />
-                                </StackPanel>
-                            </Button>
-                            <Button HorizontalContentAlignment="Left" CornerRadius="1.5,1.5,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}">
-                                <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="Go" />
-                                    <TextBlock FontSize="14" Text="Paste Shortcut" Margin="5,0,0,0" />
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <local:RibbonButton/>
+                        <local:RibbonButton/>
+                        <local:RibbonButton/>
                     </StackPanel>
-                </Frame>
+                    <local:RibbonSeparator/>
+                    <local:RibbonLargeButton/>
+                    <local:RibbonLargeButtonSplitDrop/>
+
+                    <StackPanel Orientation="Vertical">
+                        <local:RibbonButton/>
+                        <local:RibbonButton/>
+                        <local:RibbonButton/>
+                    </StackPanel>
+                    <local:RibbonSeparator/>
+
+                </StackPanel>
+                
+            </Frame>
             </NavigationView>
-        </controls:DropShadowPanel>
         <NavigationView Name="TabViewItemCollection" IsPaneToggleButtonVisible="False" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" HorizontalContentAlignment="Stretch" Margin="0,232,0,0" AllowDrop="True" PaneDisplayMode="Left" VerticalAlignment="Stretch" Width="Auto">
+            <NavigationView.Background>
+                <AcrylicBrush/>
+            </NavigationView.Background>
+
             <NavigationView.MenuItems>
-                <NavigationViewItemHeader Width="90" HorizontalAlignment="Left"/>
+             
                 <NavigationViewItem Content="Quick Access" CanDrag="True" Icon="OutlineStar"/>
                 <NavigationViewItem Content="Desktop" CanDrag="True" Icon="OutlineStar"/>
                 <NavigationViewItem Content="Documents" CanDrag="True" Icon="OutlineStar"/>
@@ -165,20 +125,29 @@
                         <Button Width="40" Height="40" HorizontalContentAlignment="Center" CornerRadius="1.5,1.5,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,0,0,0">
                             <SymbolIcon Symbol="Forward" />
                         </Button>
-                        <TextBox HorizontalContentAlignment="Left" AcceptsReturn="True" AllowDrop="True" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" PlaceholderText="Path" Height="40" Width="Auto" HorizontalAlignment="Stretch" Margin="80,0,40,0"/>
+                        <TextBox x:Name="PathBar" HorizontalContentAlignment="Left" AcceptsReturn="True" AllowDrop="True" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" PlaceholderText="Path" Height="40" Width="Auto" HorizontalAlignment="Stretch" Margin="80,0,40,0"/>
                         <Button Width="40" Height="40" HorizontalContentAlignment="Center" CornerRadius="1.5,1.5,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}" VerticalAlignment="Top" HorizontalAlignment="Right">
                             <SymbolIcon Symbol="Forward" />
                         </Button>
                     </Grid>
                     <Grid>
                         <GridView Margin="0,40,0,0">
+                            <controls:DataGrid x:Name="DirectoryContents"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AutoGenerateColumns="False">
+                                <controls:DataGrid.Columns>
+                                    <controls:DataGridTextColumn Binding="{Binding}" Header="Name" CanUserSort="True" CanUserResize="True" CanUserReorder="True" IsReadOnly="True"/>
+                                </controls:DataGrid.Columns>
+
+                            </controls:DataGrid>
+
 
                         </GridView>
+                        
 
                     </Grid>
                 </Grid>
             </NavigationView.Content>
         </NavigationView>
+        
 
     </Grid>
 </Page>
