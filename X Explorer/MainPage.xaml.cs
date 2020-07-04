@@ -13,6 +13,7 @@ using System.IO;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,28 +28,32 @@ namespace X_Explorer
         {
             this.InitializeComponent();
             string path = "C:";
-            
+
             var coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             ApplicationViewTitleBar formattableTitleBar = ApplicationView.GetForCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-            coreTitleBar.LayoutMetricsChanged += CoreTitleBar_LayoutMetricsChanged;
+            coreTitleBar.LayoutMetricsChanged += CoreTitleBar_LayoutMetricsChanged1;
 
             formattableTitleBar.ButtonBackgroundColor = Colors.Transparent;
             formattableTitleBar.ButtonForegroundColor = Colors.White;
             formattableTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
             Window.Current.SetTitleBar(CustomDragRegion);
-            
+
             Shadow.Receivers.Add(Ribbon);
 
             Ribbon.Translation += new Vector3(0, 0, 32);
 
 
             DirectoryContents.ItemsSource = new DirectoryInfo(path).GetFiles();
-
         }
 
-            private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
+        private void CoreTitleBar_LayoutMetricsChanged1(CoreApplicationViewTitleBar sender, object args)
+        {
+           
+        }
+
+        private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
         {
             if (FlowDirection == FlowDirection.LeftToRight)
             {
@@ -67,7 +72,7 @@ namespace X_Explorer
         {
             var newTab = new muxc.TabViewItem();
             newTab.IconSource = new muxc.SymbolIconSource() { Symbol = Symbol.Document };
-            newTab.Header = "New Document";
+            newTab.Header = "Explore";
 
             // The Content of a TabViewItem is often a frame which hosts a page.
             Frame frame = new Frame();
@@ -84,19 +89,9 @@ namespace X_Explorer
         }
 
 
-        private void Ribbon_Navigate(string navItemTag, Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo transitionInfo)
-
-                {
-                // Get the page type before navigation so you can prevent duplicate
-                // entries in the backstack.
-                var preNavPageType = RibbonContent.CurrentSourcePageType;
-
-                // Only navigate if the selected page isn't currently loaded.
-                if (!(_page is null) && !Type.Equals(preNavPageType, _page))
-                {
-                    RibbonContent.Navigate(_page, null, transitionInfo);
-                }
-            }
-        
+     
+    }
 }
-}
+
+
+

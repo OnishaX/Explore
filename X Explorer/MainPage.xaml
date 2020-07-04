@@ -23,7 +23,7 @@
     </Page.Resources>
 
     <Grid x:Name="grid">
-        <DropDownButton x:Name="AppButton" VerticalAlignment="Top" Width="70" Height="70" CornerRadius="90" Canvas.ZIndex="10" Style="{StaticResource ButtonRevealStyle}" Background="White" Click="AppButton_Click" Margin="10,10,0,0">
+        <DropDownButton x:Name="AppButton" VerticalAlignment="Top" Width="70" Height="70" CornerRadius="90" Canvas.ZIndex="10" Style="{StaticResource ButtonRevealStyle}" Background="White" Margin="10,10,0,0">
             <DropDownButton.Content>
                 <Image Source="/Assets/Square150x150Logo.scale-200.png" Width="42" Height="42"/>
             </DropDownButton.Content>
@@ -65,23 +65,11 @@
 
             </muxc:TabView.TabStripFooter>
         </muxc:TabView>
-            <NavigationView x:Name="Ribbon" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsPaneToggleButtonVisible="False" IsSettingsVisible="False" OverflowLabelMode="MoreLabel" VerticalAlignment="Top" IsPaneOpen="False" HorizontalAlignment="Stretch" Margin="0,40,0,0">
-            <NavigationView.Shadow>
-                <ThemeShadow/>
-            </NavigationView.Shadow>
-
-            <NavigationView.MenuItems>
-                    <NavigationViewItemHeader Width="90" HorizontalAlignment="Left"/>
-                <NavigationViewItem Content="Home" Tag="home"/>
-                    <NavigationViewItem Content="Tools"/>
-                    <NavigationViewItem Content="View"/>
-                    <NavigationViewItem Content="Share"/>
-                </NavigationView.MenuItems>
-                <Frame Name="RibbonContent" Height="150" Navigated="Ribbon_Navigated" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}" IsDoubleTapEnabled="False" IsHoldingEnabled="False">
-                <StackPanel Orientation="Horizontal">
+        <Pivot x:Name="Ribbon" Margin="0,40,0,0" Height="203" VerticalAlignment="Top" Padding="0">
+            <PivotItem Header="Home">
+                <StackPanel Orientation="Horizontal" Height="150" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}">
                     <local:RibbonLargeButton/>
                     <local:RibbonLargeButtonSplitDrop/>
-
                     <StackPanel Orientation="Vertical">
                         <local:RibbonButton/>
                         <local:RibbonButton/>
@@ -97,11 +85,20 @@
                         <local:RibbonButton/>
                     </StackPanel>
                     <local:RibbonSeparator/>
-
                 </StackPanel>
-                
-            </Frame>
-            </NavigationView>
+            </PivotItem>
+            <PivotItem Header="Section 2">
+                <!--Pivot content goes here-->
+                <TextBlock Text="Content of section 2."/>
+            </PivotItem>
+            <PivotItem Header="Section 3">
+                <!--Pivot content goes here-->
+                <TextBlock Text="Content of section 3."/>
+            </PivotItem>
+        </Pivot>
+
+
+
         <NavigationView Name="TabViewItemCollection" IsPaneToggleButtonVisible="False" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" HorizontalContentAlignment="Stretch" Margin="0,232,0,0" AllowDrop="True" PaneDisplayMode="Left" VerticalAlignment="Stretch" Width="Auto">
             <NavigationView.Background>
                 <AcrylicBrush/>
@@ -125,7 +122,7 @@
                         <Button Width="40" Height="40" HorizontalContentAlignment="Center" CornerRadius="1.5,1.5,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,0,0,0">
                             <SymbolIcon Symbol="Forward" />
                         </Button>
-                        <TextBox x:Name="PathBar" HorizontalContentAlignment="Left" AcceptsReturn="True" AllowDrop="True" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" PlaceholderText="Path" Height="40" Width="Auto" HorizontalAlignment="Stretch" Margin="80,0,40,0"/>
+                        <TextBox x:Name="PathBar" HorizontalContentAlignment="Left" AcceptsReturn="True" AllowDrop="True" BorderBrush="{x:Null}" PlaceholderText="Path" Height="40" Width="Auto" HorizontalAlignment="Stretch" Margin="80,0,40,0"/>
                         <Button Width="40" Height="40" HorizontalContentAlignment="Center" CornerRadius="1.5,1.5,1.5,1.5" Background="Transparent" Style="{StaticResource ButtonRevealStyle}" VerticalAlignment="Top" HorizontalAlignment="Right">
                             <SymbolIcon Symbol="Forward" />
                         </Button>
@@ -150,4 +147,5 @@
         
 
     </Grid>
+    
 </Page>
