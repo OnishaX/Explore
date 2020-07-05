@@ -15,12 +15,13 @@
     >
     <Page.Resources>
         <ResourceDictionary>
-            <AcrylicBrush x:Key="NavigationViewTopPaneBackground" BackgroundSource="Backdrop" FallbackColor="{ThemeResource SystemAltHighColor}" AlwaysUseFallback="True"/>
+            <AcrylicBrush x:Key="Ribbon" BackgroundSource="Backdrop" FallbackColor="{ThemeResource SystemAltHighColor}" AlwaysUseFallback="True"/>
             <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeHighColor}" FallbackColor="{ThemeResource SystemChromeLowColor}" TintOpacity=".8"/>
             <ThemeShadow x:Name="Shadow"/>
         </ResourceDictionary>
-
+        
     </Page.Resources>
+   
 
     <Grid x:Name="grid">
         <DropDownButton x:Name="AppButton" VerticalAlignment="Top" Width="70" Height="70" CornerRadius="90" Canvas.ZIndex="10" Style="{StaticResource ButtonRevealStyle}" Background="White" Margin="10,10,0,0">
@@ -62,13 +63,46 @@
                     <Rectangle x:Name="CustomDragRegion" Margin="0,0,0,0" Fill="Transparent" HorizontalAlignment="Stretch"/>
                 </Grid>
 
-
             </muxc:TabView.TabStripFooter>
         </muxc:TabView>
         <Pivot x:Name="Ribbon" Margin="0,40,0,0" Height="203" VerticalAlignment="Top" Padding="0">
-            <PivotItem Header="Home">
+            <Pivot.Resources>
+                <Style TargetType="Pivot">
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </Pivot.Resources>
+            <Pivot.LeftHeader>
+                <Rectangle Width="90" Visibility="Visible" Opacity="0"/>
+            </Pivot.LeftHeader>
+            <PivotItem Header="Home" Margin="0,0,0,0">
                 <StackPanel Orientation="Horizontal" Height="150" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}">
                     <local:RibbonLargeButton/>
+                    <local:RibbonLargeButton/>
+                    <StackPanel Orientation="Vertical">
+                        <local:RibbonButton />
+                        <local:RibbonButton/>
+                        <local:RibbonButton/>
+                    </StackPanel>
+                    <local:RibbonSeparator/>
+                    
+                    <local:RibbonLargeButtonSplitDrop/>
+                    <local:RibbonLargeButtonSplitDrop/>
+
+                    <local:RibbonSeparator/>
+
+                    <local:RibbonLargeButtonSplitDrop/>
+                    <local:RibbonLargeButton/>
+
+                    <local:RibbonSeparator/>
+                    
+                    
+                    <local:RibbonLargeButtonSplitDrop/>
+                    <StackPanel Orientation="Vertical">
+                        <local:RibbonButton/>
+                        <local:RibbonButton/>
+                        
+                    </StackPanel>
+                    <local:RibbonSeparator/>
                     <local:RibbonLargeButtonSplitDrop/>
                     <StackPanel Orientation="Vertical">
                         <local:RibbonButton/>
@@ -77,23 +111,25 @@
                     </StackPanel>
                     <local:RibbonSeparator/>
                     <local:RibbonLargeButton/>
-                    <local:RibbonLargeButtonSplitDrop/>
-
                     <StackPanel Orientation="Vertical">
                         <local:RibbonButton/>
                         <local:RibbonButton/>
                         <local:RibbonButton/>
                     </StackPanel>
-                    <local:RibbonSeparator/>
+
                 </StackPanel>
             </PivotItem>
-            <PivotItem Header="Section 2">
+            <PivotItem Header="View">
                 <!--Pivot content goes here-->
-                <TextBlock Text="Content of section 2."/>
+                <TextBlock Text="Content of View."/>
             </PivotItem>
-            <PivotItem Header="Section 3">
+            <PivotItem Header="Tools">
                 <!--Pivot content goes here-->
-                <TextBlock Text="Content of section 3."/>
+                <TextBlock Text="Content of Tools."/>
+            </PivotItem>
+            <PivotItem Header="Share">
+                <!--Pivot content goes here-->
+                <TextBlock Text="Content of Share."/>
             </PivotItem>
         </Pivot>
 

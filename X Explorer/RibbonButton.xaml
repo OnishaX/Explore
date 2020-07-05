@@ -12,8 +12,8 @@
     <Grid>
         <Button Height="33.3333333333333" HorizontalContentAlignment="Left" CornerRadius="2" Background="Transparent" Style="{StaticResource ButtonRevealStyle}" MinWidth="100">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <SymbolIcon Symbol="Emoji"/>
-                <TextBlock FontSize="14" Text="Text" Margin="5,0,0,0" Width="24.459" />
+                <SymbolIcon Symbol="{x:Bind}"/>
+                <TextBlock FontSize="14" Text="{Binding}" Margin="5,0,0,0" Width="24.459" />
             </StackPanel>
 
         </Button>

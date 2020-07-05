@@ -41,9 +41,10 @@ namespace X_Explorer
             Window.Current.SetTitleBar(CustomDragRegion);
 
             Shadow.Receivers.Add(Ribbon);
+            Shadow.Receivers.Add(AppButton);
 
             Ribbon.Translation += new Vector3(0, 0, 32);
-
+            AppButton.Translation += new Vector3(0, 0, 100);
 
             DirectoryContents.ItemsSource = new DirectoryInfo(path).GetFiles();
         }
@@ -88,8 +89,10 @@ namespace X_Explorer
             sender.TabItems.Remove(args.Tab);
         }
 
+        private void RibbonButton_ContextCanceled(UIElement sender, RoutedEventArgs args)
+        {
 
-     
+        }
     }
 }
 
