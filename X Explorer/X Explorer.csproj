@@ -209,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CustomToolNamespace>X_Explorer</CustomToolNamespace>
     </Page>
+    <Page Include="RibbonHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RibbonLargeButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

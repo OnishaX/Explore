@@ -9,7 +9,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-    mc:Ignorable="d"
+    mc:Ignorable="d" BorderThickness="0,0,0,0"
     
     
     >
@@ -18,12 +18,13 @@
             <AcrylicBrush x:Key="Ribbon" BackgroundSource="Backdrop" FallbackColor="{ThemeResource SystemAltHighColor}" AlwaysUseFallback="True"/>
             <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeHighColor}" FallbackColor="{ThemeResource SystemChromeLowColor}" TintOpacity=".8"/>
             <ThemeShadow x:Name="Shadow"/>
-        </ResourceDictionary>
-        
-    </Page.Resources>
-   
 
-    <Grid x:Name="grid">
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+
+    <Grid x:Name="grid" CornerRadius="4,4,4,4">
         <DropDownButton x:Name="AppButton" VerticalAlignment="Top" Width="70" Height="70" CornerRadius="90" Canvas.ZIndex="10" Style="{StaticResource ButtonRevealStyle}" Background="White" Margin="10,10,0,0">
             <DropDownButton.Content>
                 <Image Source="/Assets/Square150x150Logo.scale-200.png" Width="42" Height="42"/>
@@ -31,7 +32,7 @@
 
 
             <DropDownButton.Flyout>
-                
+
                 <MenuFlyout Placement="Bottom">
                     <MenuFlyoutItem Text="Open new Explore window">
                         <MenuFlyoutItem.Icon>
@@ -51,7 +52,7 @@
                 </MenuFlyout>
             </DropDownButton.Flyout>
         </DropDownButton>
-            <Image Height="70" Width="70"/>
+        <Image Height="70" Width="70"/>
 
         <muxc:TabView x:Name="tabView" AddTabButtonClick="TabView_AddTabButtonClick" TabCloseRequested="TabView_TabCloseRequested" CanDragTabs="True" CloseButtonOverlayMode="OnPointerOver" Height="40" Background="{ThemeResource SystemControlAccentAcrylicWindowAccentMediumHighBrush}" AllowDrop="True">
             <muxc:TabView.TabStripHeader>
@@ -65,73 +66,80 @@
 
             </muxc:TabView.TabStripFooter>
         </muxc:TabView>
-        <Pivot x:Name="Ribbon" Margin="0,40,0,0" Height="203" VerticalAlignment="Top" Padding="0">
-            <Pivot.Resources>
-                <Style TargetType="Pivot">
-                    <Setter Property="FontSize" Value="14"/>
-                </Style>
-            </Pivot.Resources>
+        <!--<Pivot x:Name="Ribbon" Margin="0,40,0,0" Height="203" VerticalAlignment="Top" Padding="0">
+
             <Pivot.LeftHeader>
-                <Rectangle Width="90" Visibility="Visible" Opacity="0"/>
+                <Rectangle Width="90" Visibility="Visible" Opacity="0" Height="35"/>
             </Pivot.LeftHeader>
-            <PivotItem Header="Home" Margin="0,0,0,0">
-                <StackPanel Orientation="Horizontal" Height="150" Padding="20" Background="{ThemeResource ToggleButtonPressedForegroundThemeBrush}">
-                    <local:RibbonLargeButton/>
-                    <local:RibbonLargeButton/>
-                    <StackPanel Orientation="Vertical">
-                        <local:RibbonButton />
-                        <local:RibbonButton/>
-                        <local:RibbonButton/>
-                    </StackPanel>
-                    <local:RibbonSeparator/>
-                    
-                    <local:RibbonLargeButtonSplitDrop/>
-                    <local:RibbonLargeButtonSplitDrop/>
-
-                    <local:RibbonSeparator/>
-
-                    <local:RibbonLargeButtonSplitDrop/>
-                    <local:RibbonLargeButton/>
-
-                    <local:RibbonSeparator/>
-                    
-                    
-                    <local:RibbonLargeButtonSplitDrop/>
-                    <StackPanel Orientation="Vertical">
-                        <local:RibbonButton/>
-                        <local:RibbonButton/>
-                        
-                    </StackPanel>
-                    <local:RibbonSeparator/>
-                    <local:RibbonLargeButtonSplitDrop/>
-                    <StackPanel Orientation="Vertical">
-                        <local:RibbonButton/>
-                        <local:RibbonButton/>
-                        <local:RibbonButton/>
-                    </StackPanel>
-                    <local:RibbonSeparator/>
-                    <local:RibbonLargeButton/>
-                    <StackPanel Orientation="Vertical">
-                        <local:RibbonButton/>
-                        <local:RibbonButton/>
-                        <local:RibbonButton/>
-                    </StackPanel>
-
-                </StackPanel>
+            <PivotItem x:Name="HomeTab" Margin="0,0,0,0" FontSize="14px" VerticalAlignment="Stretch">
+                <PivotItem.Header>
+                    <TextBlock FontSize="14" Text="Home" FontWeight="Bold" VerticalAlignment="Top" Height="25" />
+                </PivotItem.Header>
+               
             </PivotItem>
-            <PivotItem Header="View">
-                <!--Pivot content goes here-->
+            <PivotItem x:Name="ViewTab" Margin="0,0,0,0" FontSize="14px">
+                <PivotItem.Header>
+                    <TextBlock FontSize="14" Text="View" FontWeight="Bold" />
+                </PivotItem.Header>
+                -->
+        <!--Pivot content goes here-->
+        <!--
                 <TextBlock Text="Content of View."/>
             </PivotItem>
-            <PivotItem Header="Tools">
-                <!--Pivot content goes here-->
+            <PivotItem x:Name="ToolsTab" Margin="0,0,0,0" FontSize="14px">
+                <PivotItem.Header>
+                    <TextBlock FontSize="14" Text="Tools" FontWeight="Bold" />
+                </PivotItem.Header>
+                -->
+        <!--Pivot content goes here-->
+        <!--
                 <TextBlock Text="Content of Tools."/>
             </PivotItem>
-            <PivotItem Header="Share">
-                <!--Pivot content goes here-->
+            <PivotItem x:Name="ShareTab" Margin="0,0,0,0" FontSize="14px">
+                <PivotItem.Header>
+                    <TextBlock FontSize="14" Text="Share" FontWeight="Bold" />
+                </PivotItem.Header>
+                -->
+        <!--Pivot content goes here-->
+        <!--
                 <TextBlock Text="Content of Share."/>
             </PivotItem>
-        </Pivot>
+            
+            <PivotItem x:Name="SearchTab" Margin="0,0,0,0" FontSize="14px">
+                <PivotItem.Header>
+                    <TextBlock FontSize="14" Text="Search" FontWeight="Bold"/>
+                </PivotItem.Header>
+                -->
+        <!--Pivot content goes here-->
+        <!--
+                <TextBlock Text="Content of Share."/>
+                
+            </PivotItem>
+
+        </Pivot>-->
+        <muxc:NavigationView x:Name="Ribbon"
+    IsSettingsVisible="False"
+    IsBackButtonVisible="Collapsed"
+    ItemInvoked="NavigationView_OnItemInvoked"
+    IsBackEnabled="False"
+    AlwaysShowHeader="False"
+    PaneDisplayMode="Top"
+    SelectionFollowsFocus="Enabled"
+    IsTabStop="False"
+    Margin="0,39,0,0">
+
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItemHeader Width="90"></muxc:NavigationViewItemHeader>
+                <muxc:NavigationViewItem Content="Home" Tag="HomeTab" x:Name="HomeTab" CornerRadius="2,2,2,2" IsSelected="True"/>
+                <muxc:NavigationViewItem Content="View" Tag="ViewTab" x:Name="ViewTab" CornerRadius="2,2,2,2"/>
+                <muxc:NavigationViewItem Content="Tools" Tag="ToolsTab" x:Name="ToolsTab" CornerRadius="2,2,2,2"/>
+            </muxc:NavigationView.MenuItems>
+
+            <muxc:NavigationView.AutoSuggestBox>
+                <AutoSuggestBox QueryIcon="Find" AutomationProperties.Name="Search" MinWidth="200" />
+            </muxc:NavigationView.AutoSuggestBox>
+            <Frame x:Name="RibbonFrame" NavigationFailed="RibbonFrame_OnNavigationFailed" Navigated="RibbonFrame_Navigated"/>
+        </muxc:NavigationView>
 
 
 
@@ -141,7 +149,7 @@
             </NavigationView.Background>
 
             <NavigationView.MenuItems>
-             
+
                 <NavigationViewItem Content="Quick Access" CanDrag="True" Icon="OutlineStar"/>
                 <NavigationViewItem Content="Desktop" CanDrag="True" Icon="OutlineStar"/>
                 <NavigationViewItem Content="Documents" CanDrag="True" Icon="OutlineStar"/>
@@ -174,14 +182,14 @@
 
 
                         </GridView>
-                        
+
 
                     </Grid>
                 </Grid>
             </NavigationView.Content>
         </NavigationView>
-        
+
 
     </Grid>
-    
+
 </Page>

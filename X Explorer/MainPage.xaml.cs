@@ -1,19 +1,15 @@
-﻿using Windows.ApplicationModel.Core;
+﻿using System;
+using System.IO;
+using System.Numerics;
+using System.Reflection;
+using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using muxc = Microsoft.UI.Xaml.Controls;
-using System.Windows.Input;
-using Windows.Storage;
-using Microsoft.Toolkit.Uwp;
-using System.Numerics;
-using System.IO;
-using System.Collections.Generic;
-using System;
-using System.Linq;
-using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -51,7 +47,7 @@ namespace X_Explorer
 
         private void CoreTitleBar_LayoutMetricsChanged1(CoreApplicationViewTitleBar sender, object args)
         {
-           
+
         }
 
         private void CoreTitleBar_LayoutMetricsChanged(CoreApplicationViewTitleBar sender, object args)
@@ -93,8 +89,70 @@ namespace X_Explorer
         {
 
         }
+
+        private void RibbonButton_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private NavigationViewItem _lastItem;
+        private void NavigationView_OnItemInvoked(
+            Windows.UI.Xaml.Controls.NavigationView sender,
+            NavigationViewItemInvokedEventArgs args)
+        {
+            var item = args.InvokedItemContainer as NavigationViewItem;
+            if (item == null || item == _lastItem)
+                return;
+            var clickedView = item.Tag?.ToString() ?? "SettingsView";
+            if (!NavigateToView(clickedView)) return;
+            _lastItem = item;
+        }
+
+        private bool NavigateToView(string clickedView)
+        {
+            var view = Assembly.GetExecutingAssembly()
+                .GetType($"NavigationView.Views.{clickedView}");
+
+            if (string.IsNullOrWhiteSpace(clickedView) || view == null)
+            {
+                return false;
+            }
+
+            RibbonFrame.Navigate(view, null, new EntranceNavigationTransitionInfo());
+            return true;
+        }
+
+        private void RibbonFrame_OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw new NavigationException(
+                $"Navigation failed {e.Exception.Message} for {e.SourcePageType.FullName}");
+        }
+
+        private void NavView_OnBackRequested(
+            Windows.UI.Xaml.Controls.NavigationView sender,
+            NavigationViewBackRequestedEventArgs args)
+        {
+            if (RibbonFrame.CanGoBack)
+                RibbonFrame.GoBack();
+        }
+
+        private void RibbonFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+    }
+
+    internal class NavigationException : Exception
+    {
+        public NavigationException(string msg) : base(msg)
+        {
+
+        }
     }
 }
+    
+
+
 
 
 

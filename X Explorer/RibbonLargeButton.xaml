@@ -6,16 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="100"
+    d:DesignHeight="99.9"
     d:DesignWidth="60">
 
     <Grid>
-        <Button Width="60" Height="100" HorizontalContentAlignment="Center" CornerRadius="2" Background="Transparent" Style="{StaticResource ButtonRevealStyle}" VerticalContentAlignment="Top">
-            <StackPanel Orientation="Vertical" Margin="0,5,0,0">
-                <SymbolIcon Symbol="Emoji"/>
-                <TextBlock FontSize="14" Text="Text" />
-            </StackPanel>
+        <StackPanel Orientation="Vertical">
+            <Button Width="60" Height="99.99" HorizontalContentAlignment="Center" CornerRadius="2,2,3,2" Background="Transparent" Style="{StaticResource ButtonRevealStyle}">
+                <StackPanel Orientation="Vertical">
+                    <SymbolIcon Symbol="Emoji"/>
+                    <TextBlock FontSize="14" Text="Text" />
+                </StackPanel>
+            </Button>
 
-        </Button>
+        </StackPanel>
+
     </Grid>
 </UserControl>
